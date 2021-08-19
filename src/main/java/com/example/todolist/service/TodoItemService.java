@@ -28,4 +28,15 @@ public class TodoItemService {
         todoItemRepository.deleteById(todo);
     }
 
+    public Todo update(String id, Todo todoItem){
+        Todo getTodo = retrieve(id);
+        getTodo.setDone(todoItem.getDone());
+        return todoItemRepository.save(getTodo);
+    }
+
+    public Todo retrieve(String id){
+        return todoItemRepository.findById(id)
+                .orElse(null);
+    }
+
 }
